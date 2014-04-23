@@ -110,7 +110,6 @@ static const int kCellMinimumLabelWidth = 80;
     }
 }
 
-
 - (void)applyAppearanceForElement:(QElement *)element {
     QAppearance *appearance = element.appearance;
     self.textLabel.textColor = element.enabled  ? appearance.labelColorEnabled : appearance.labelColorDisabled;

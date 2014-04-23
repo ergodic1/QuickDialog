@@ -67,7 +67,7 @@
     cell.slider.minimumValue = _minimumValue;
     cell.slider.maximumValue = _maximumValue;
     cell.slider.value = _floatValue;
-    
+    [cell applyAppearanceForElement:self];
     cell.textLabel.text = _title;
     cell.detailTextLabel.text = [_value description];
     cell.imageView.image = _image;

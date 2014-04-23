@@ -42,7 +42,7 @@
     UIPickerView *pickerView = nil;
     [cell prepareForElement:self inTableView:tableView pickerView:&pickerView];
     _pickerView = pickerView;
-    
+    cell.subtitle.text = self.subtitle;
     cell.imageView.image = self.image;
     
     return cell;
