@@ -69,6 +69,7 @@
     }
     [cell prepareForElement:self inTableView:tableView];
     cell.textField.userInteractionEnabled = self.enabled;
+    cell.subtitle.text = self.subtitle;
 
     return cell;
 }

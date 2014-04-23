@@ -97,6 +97,7 @@
 
 - (void)setRoot:(QRootElement *)root {
     _root = root;
+    root.controller = self;
     self.quickDialogTableView.root = root;
     self.title = _root.title;
     self.navigationItem.title = _root.title;
@@ -148,9 +149,6 @@
     return [QuickDialogController buildControllerWithClass:controllerClass root:root];
 }
 
-- (BOOL)shouldDeleteElement:(QElement *)element{
-    return YES;
-}
 
 - (void) resizeForKeyboard:(NSNotification*)aNotification {
     if (!_viewOnScreen)
@@ -197,6 +195,9 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+- (void)willDeleteElement:(QElement *)element{
+    // Intentionally empty.
 }
 
 

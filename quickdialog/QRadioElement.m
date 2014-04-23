@@ -75,7 +75,6 @@
     if (self) {
         _selected = -1;
     }
-
     return self;
 }
 

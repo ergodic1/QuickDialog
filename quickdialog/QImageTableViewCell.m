@@ -30,6 +30,7 @@ static NSString *kDetailImageValueObservanceContext = @"imageValue";
 - (QImageTableViewCell *)init {
    self = [self initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"QuickformImageElement"];
    if (self!=nil){
+      self.subtitle = [UILabel new];
       [self createSubviews];
       self.selectionStyle = UITableViewCellSelectionStyleBlue;
       [self addObserver:self forKeyPath:@"imageElement.imageValue" options:0 context:(__bridge void *)(kDetailImageValueObservanceContext)];

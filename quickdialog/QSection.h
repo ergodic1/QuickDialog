@@ -57,6 +57,7 @@
 @property(nonatomic, readonly) NSUInteger visibleIndex;
 
 @property(nonatomic, assign) BOOL canDeleteRows;
+@property(nonatomic, assign) BOOL allowsUserEditing;
 @property(nonatomic, strong) id object;
 
 

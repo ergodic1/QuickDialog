@@ -52,27 +52,28 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [[_tableView.root getVisibleSectionForIndex:indexPath.section] isKindOfClass:[QSortingSection class]];
+    QSection *section = [_tableView.root getVisibleSectionForIndex:indexPath.section];
+    BOOL rightType = [section isKindOfClass:[QSortingSection class]];
+    return rightType && ((QSortingSection *)section).sortingEnabled;
 }
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     QSortingSection *section = ((QSortingSection *) [_tableView.root getVisibleSectionForIndex: indexPath.section]);
-
+    
     QElement *element;
     if (section.elements.count >= indexPath.row) {
         element = section.elements[indexPath.row];
     }
-
-    if ([element.controller respondsToSelector:@selector(shouldDeleteElement:)]) {
-        if (![(QuickDialogController *)element.controller shouldDeleteElement:element]) {
-            return;
-        };
-    }
-
+    
     if ([section removeElementForRow:indexPath.row]){
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+    // delete afterwards, otherwise forced reloads won't work properly.
+    if ([element.controller respondsToSelector:@selector(willDeleteElement:)]) {
+        [(QuickDialogController *)element.controller willDeleteElement:element];
+    }
+
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {

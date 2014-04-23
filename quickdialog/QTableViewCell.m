@@ -22,6 +22,17 @@ static const int kCellMinimumLabelWidth = 80;
 
 - (QTableViewCell *)initWithReuseIdentifier:(NSString *)string {
     self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:string];
+    if (self ) {
+        self.subtitle = [UILabel new];
+    }
+    return self;
+}
+
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if( self ) {
+        self.subtitle = [UILabel new];
+    }
     return self;
 }
 
@@ -35,6 +46,7 @@ static const int kCellMinimumLabelWidth = 80;
 
 - (void)layoutSubviewsInsideBounds:(CGRect)bounds
 {
+    
     CGSize sizeWithMargin = bounds.size;
 
     if (self.imageView.image!=nil){
@@ -92,6 +104,10 @@ static const int kCellMinimumLabelWidth = 80;
                 detailsWidth - (self.accessoryView ==nil ? 0 : QCellMarginDouble) - (self.accessoryType !=UITableViewCellAccessoryNone ? 0 : QCellMarginDouble),
                 bounds.size.height- QCellMarginDouble);
     }
+    if (self.subtitle.text != nil) {
+        self.subtitle.frame = CGRectMake(self.textLabel.frame.origin.x,bounds.size.height-18,bounds.size.width- QCellMarginDouble,18);
+        [self.contentView addSubview:self.subtitle];
+    }
 }
 
 
@@ -109,6 +125,10 @@ static const int kCellMinimumLabelWidth = 80;
     self.detailTextLabel.numberOfLines = 0;
     self.detailTextLabel.backgroundColor = [UIColor clearColor];
 
+    self.subtitle.font = [appearance.labelFont fontWithSize:10];
+    self.subtitle.backgroundColor = [UIColor clearColor];
+    self.subtitle.textColor = element.enabled  ? appearance.labelColorEnabled : appearance.labelColorDisabled;
+    
     self.backgroundColor = element.enabled ? appearance.backgroundColorEnabled : appearance.backgroundColorDisabled;
     self.selectedBackgroundView = element.appearance.selectedBackgroundView;
 

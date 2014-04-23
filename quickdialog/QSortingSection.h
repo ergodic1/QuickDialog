@@ -21,11 +21,11 @@
 @interface QSortingSection : QSection {
 
     BOOL _sortingEnabled;
+
 }
 
 @property(nonatomic, assign) BOOL sortingEnabled;
-
-
+@property(nonatomic, assign) BOOL allowsUserSorting;
 @property(nonatomic, assign) BOOL canDeleteRows;
 
 - (void)moveElementFromRow:(NSUInteger)from toRow:(NSUInteger)to;
