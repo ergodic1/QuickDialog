@@ -38,7 +38,13 @@
 
 + (QuickDialogController *)buildControllerWithClass:(Class)controllerClass root:(QRootElement *)root {
     controllerClass = controllerClass==nil? [QuickDialogController class] : controllerClass;
-    return [((QuickDialogController *)[controllerClass alloc]) initWithRoot:root];
+    QuickDialogController *controller = [((QuickDialogController *)[controllerClass alloc]) initWithRoot:root];
+    if (root.onSearch) {
+        UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, controller.view.frame.size.width, 44)];
+        searchBar.delegate = controller;
+        controller.quickDialogTableView.tableHeaderView = searchBar;
+    }
+    return controller;
 }
 
 + (QuickDialogController *)controllerForRoot:(QRootElement *)root {
@@ -59,6 +65,10 @@
     return controllerClass;
 }
 
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    self.root.onSearch(searchText);
+    [self.quickDialogTableView reloadData];
+}
 + (UINavigationController*)controllerWithNavigationForRoot:(QRootElement *)root {
     return [[UINavigationController alloc] initWithRootViewController:[QuickDialogController
                                                                        buildControllerWithClass:[self controllerClassForRoot:root]
@@ -84,8 +94,8 @@
 - (QuickDialogController *)initWithRoot:(QRootElement *)rootElement {
     self = [super init];
     if (self) {
-        self.root = rootElement;
         self.resizeWhenKeyboardPresented =YES;
+        self.root = rootElement;
     }
     return self;
 }

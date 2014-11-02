@@ -13,6 +13,7 @@
 //
 
 #import "QSection.h"
+#import "QSortingDelegate.h"
 
 /**
   QSortingSection: automatically enables sorting of the cells inside the section.
@@ -27,6 +28,7 @@
 @property(nonatomic, assign) BOOL sortingEnabled;
 @property(nonatomic, assign) BOOL allowsUserSorting;
 @property(nonatomic, assign) BOOL canDeleteRows;
+@property(nonatomic, strong) id<QSortingDelegate> sortingDelegate;
 
 - (void)moveElementFromRow:(NSUInteger)from toRow:(NSUInteger)to;
 

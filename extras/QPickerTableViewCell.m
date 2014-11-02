@@ -67,6 +67,10 @@ NSString * const QPickerTableViewCellIdentifier = @"QPickerTableViewCell";
     [self prepareForElement:element inTableView:tableView];
     
     _pickerView = [[UIPickerView alloc] init];
+    if( SYSTEM_VERSION_LESS_THAN(@"7.0") ){
+        _pickerView.backgroundColor = UIColorFromRGB(0x263843);
+        [_pickerView setAlpha:1];
+    }
     _pickerView.showsSelectionIndicator = YES;
     _pickerView.dataSource = self;
     _pickerView.delegate = self;
@@ -144,7 +148,7 @@ NSString * const QPickerTableViewCellIdentifier = @"QPickerTableViewCell";
         id componentValue = [componentsValues objectAtIndex:(NSUInteger) componentIndex];
         NSInteger rowIndex = [[self.pickerElement.items objectAtIndex:componentIndex] indexOfObject:componentValue];
         if (rowIndex != NSNotFound) {
-            [_pickerView selectRow:rowIndex inComponent:componentIndex animated:YES];
+            [_pickerView selectRow:rowIndex inComponent:componentIndex animated:NO];
         }
     }
 }

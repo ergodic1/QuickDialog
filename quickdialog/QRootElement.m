@@ -25,6 +25,7 @@
 
 
 @synthesize title = _title;
+@synthesize summary = _summary;
 @synthesize sections = _sections;
 @synthesize grouped = _grouped;
 @synthesize controllerName = _controllerName;
@@ -33,7 +34,7 @@
 @synthesize onValueChanged = _onValueChanged;
 @synthesize presentationMode = _presentationMode;
 @synthesize preselectedElementIndex = _preselectedElementIndex;
-
+@synthesize onSearch = _onSearch;
 
 - (instancetype)init {
     self = [super init];
@@ -106,8 +107,12 @@
 - (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
     UITableViewCell *cell = [super getCellForTableView:tableView controller:controller];
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    if (_title!= nil)
+    if (_title!= nil){
         cell.textLabel.text = [NSString stringWithFormat:@"%@", _title];
+    }
+    if( _summary != nil ) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", _summary];
+    }
     return cell;
 }
 

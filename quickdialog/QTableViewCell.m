@@ -96,7 +96,7 @@ static const int kCellMinimumLabelWidth = 80;
 
         CGFloat detailsWidth = bounds.size.width - QCellMarginDouble;
         if (valueSize.width>0)
-            detailsWidth = detailsWidth - valueSize.width - QCellMarginDouble;
+            detailsWidth = bounds.size.width - valueSize.width - QCellMarginDouble;
 
         self.detailTextLabel.frame = CGRectMake(
                 bounds.size.width - detailsWidth ,

@@ -38,11 +38,13 @@ typedef enum  {
 	BOOL _grouped;
 	
     NSString *_title;
+    NSString *_summary;
     NSMutableArray *_sections;
     NSString *_controllerName;
 }
 
 @property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSString *summary;
 @property(nonatomic, strong) NSMutableArray *sections;
 @property(nonatomic, strong) NSDictionary *sectionTemplate;
 @property(assign) BOOL grouped;
@@ -52,7 +54,7 @@ typedef enum  {
 @property(nonatomic) QPresentationMode presentationMode;
 @property(nonatomic, strong) NSIndexPath *preselectedElementIndex;
 @property(nonatomic, copy) void (^onValueChanged)(QRootElement *);
-
+@property(nonatomic, copy) void (^onSearch)(NSString *searchText);
 
 + (instancetype)rootForJSON:(NSString *)jsonFileName withObject:(id)object;
 - (instancetype)init;

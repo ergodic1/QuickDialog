@@ -49,10 +49,16 @@
 
 - (void)moveElementFromRow:(NSUInteger)from toRow:(NSUInteger)to {
     [self.elements moveObjectFromIndex:from toIndex:to];
+    if( self.sortingDelegate ) {
+        [self.sortingDelegate moveElementFromRow:from toRow:to];
+    }
 }
 
 - (BOOL)removeElementForRow:(NSInteger)index {
     [self.elements removeObjectAtIndex:(NSUInteger) index];
+    if( self.sortingDelegate ) {
+        [self.sortingDelegate removeElementForRow:index];
+    }
     return YES;
 
 }
