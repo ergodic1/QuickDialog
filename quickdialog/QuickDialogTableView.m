@@ -57,6 +57,8 @@
             self.allowsSelectionDuringEditing = YES;
         }
     }
+    // this fixes a bug where when setroot is the current root, it doesnt retain seletion after changing for some reason.
+    self.allowsSelection = YES;
     [self reloadData];
 }
 
