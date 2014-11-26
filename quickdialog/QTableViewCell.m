@@ -28,6 +28,14 @@ static const int kCellMinimumLabelWidth = 80;
     return self;
 }
 
+/**
+ * Fixes ios8 bug where reorder controls not visible after first time.
+ */
+-(void)prepareForReuse{
+    [super prepareForReuse];
+    [self setEditing:NO animated:NO];
+}
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if( self ) {
