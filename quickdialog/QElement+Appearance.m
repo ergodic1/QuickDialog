@@ -40,8 +40,4 @@ static void * const KEY_APPEARANCE_OBJECT = (void*)&KEY_APPEARANCE_OBJECT;
     return objAppearance;
 }
 
-- (void)setAppearance:(QAppearance *)newAppearance {
-    objc_setAssociatedObject(self, KEY_APPEARANCE_OBJECT, newAppearance, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 @end
