@@ -30,6 +30,8 @@
 - (QLabelElement *)initWithTitle:(NSString *)title Value:(id)value {
     self = [super init];
     _title = title;
+    self.accessibilityIdentifier = title;
+    self.accessibilityLabel = title;
     _value = value;
     _keepSelected = YES;
     return self;
