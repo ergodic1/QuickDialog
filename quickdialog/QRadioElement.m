@@ -97,7 +97,7 @@
 -(void)setSelectedItem:(id)item {
     if (self.items==nil || item==nil)
         return;
-    self.selected = [self.items indexOfObject:item];
+    self.selected = [self.items indexOfObject:item]==NSNotFound ? 0 : [self.items indexOfObject:item];
 }
 
 -(id)selectedItem {
