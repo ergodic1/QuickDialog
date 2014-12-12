@@ -113,7 +113,10 @@
 - (UITableViewCell *)cellForElement:(QElement *)element {
     if (element.hidden)
         return nil;
-    return [self cellForRowAtIndexPath:[element getIndexPath]];
+    UITableViewCell *cell = [self cellForRowAtIndexPath:[element getIndexPath]];
+    cell.accessibilityLabel = element.accessibilityLabel;
+    cell.accessibilityIdentifier = cell.accessibilityIdentifier;
+    return cell;
 }
 
 - (void)deselectRows

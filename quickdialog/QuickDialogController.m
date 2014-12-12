@@ -91,6 +91,15 @@
     return YES;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self) {
+        self.resizeWhenKeyboardPresented =YES;
+    }
+    return self;
+}
+
 - (QuickDialogController *)initWithRoot:(QRootElement *)rootElement {
     self = [super init];
     if (self) {
