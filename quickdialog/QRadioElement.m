@@ -98,7 +98,7 @@
 -(void)setSelectedItem:(id)item {
     if (self.items==nil || item==nil)
         return;
-    self.selected = [self.items indexOfObject:item];
+    self.selected = [self.items indexOfObject:item]==NSNotFound ? 0 : [self.items indexOfObject:item];
 }
 
 -(id)selectedItem {
@@ -179,7 +179,7 @@
         return;
 
     if (_values==nil){
-        [obj setValue:[NSNumber numberWithInt:_selected] forKey:_key];
+        [obj setValue:[NSNumber numberWithInt:(int)_selected] forKey:_key];
     } else {
         [obj setValue:[_values objectAtIndex:(NSUInteger) _selected] forKey:_key];
     }
