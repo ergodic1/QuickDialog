@@ -32,6 +32,7 @@
     _title = title;
     self.accessibilityIdentifier = title;
     self.accessibilityLabel = title;
+    [self setIsAccessibilityElement:YES];
     _value = value;
     _keepSelected = YES;
     return self;
