@@ -43,9 +43,7 @@
     cell.textLabel.font = self.appearance.labelFont;
     cell.textLabel.textColor = self.enabled ? self.appearance.actionColorEnabled : self.appearance.actionColorDisabled;
     cell.subtitle.text = self.subtitle;
-    if( self.image != nil ){
-        [cell.imageView setImage:self.image];
-    }
+    [cell.imageView setImage:self.image];
     return cell;
 }
 

@@ -205,6 +205,9 @@
 
     if(_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryDidBeginEditingElement:andCell:)]){
         [_entryElement.delegate QEntryDidBeginEditingElement:_entryElement andCell:self];
+    } else {
+        [_textField selectAll:self];
+        [UIMenuController sharedMenuController].menuVisible = NO;
     }
 }
 
