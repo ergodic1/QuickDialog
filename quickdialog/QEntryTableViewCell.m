@@ -130,7 +130,13 @@
     _quickformTableView = tableView;
     _entryElement = element;
     _textField.text = _entryElement.textValue;
-    _textField.placeholder = _entryElement.placeholder;
+    //    _textField.placeholder = _entryElement.placeholder;
+    if( _entryElement.placeholder ) {
+        UIColor *color = [UIColor lightTextColor];
+        _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_entryElement.placeholder attributes:@{NSForegroundColorAttributeName: color}];
+    }else {
+        _textField.placeholder = nil;
+    }
     if ([_textField isKindOfClass:[QTextField class]]) {
         QTextField *qtf = (QTextField *) _textField;
         qtf.prefix = _entryElement.prefix;

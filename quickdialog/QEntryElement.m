@@ -1,4 +1,5 @@
-//                                
+
+//
 // Copyright 2011 ESCOZ Inc  - http://escoz.com
 // 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
@@ -65,6 +66,7 @@
     cell.textField.enabled = self.enabled;
     cell.textField.userInteractionEnabled = self.enabled;
     cell.textField.textAlignment = self.appearance.entryAlignment;
+    
     cell.subtitle.text = self.subtitle;
     cell.imageView.image = self.image;
     [cell prepareForElement:self inTableView:tableView];
