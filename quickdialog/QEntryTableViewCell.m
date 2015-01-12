@@ -40,9 +40,25 @@
     [_prevNext addTarget:self action:@selector(handleActionBarPreviousNext:) forControlEvents:UIControlEventValueChanged];
     UIBarButtonItem *prevNextWrapper = [[UIBarButtonItem alloc] initWithCustomView:_prevNext];
     UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    [actionBar setItems:[NSArray arrayWithObjects:prevNextWrapper, flexible, doneButton, nil]];
-
+    // move left and right
+    UIBarButtonItem *moveLeft = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Previous"] style:UIBarButtonItemStylePlain target:self action:@selector(moveLeft)];
+    UIBarButtonItem *moveRight = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Next"] style:UIBarButtonItemStylePlain target:self action:@selector(moveRight)];
+    
+    [actionBar setItems:[NSArray arrayWithObjects:prevNextWrapper, flexible, moveLeft,flexible, moveRight,flexible, doneButton, nil]];
+    
 	return actionBar;
+}
+
+-(void) moveRight {
+    UITextPosition *newCursorPosition = [_textField positionFromPosition:_textField.selectedTextRange.start offset:1];
+    UITextRange *newSelectedRange = [_textField textRangeFromPosition:newCursorPosition toPosition:newCursorPosition];
+    [_textField setSelectedTextRange:newSelectedRange];
+}
+
+-(void) moveLeft {
+    UITextPosition *newCursorPosition = [_textField positionFromPosition:_textField.selectedTextRange.start offset:-1];
+    UITextRange *newSelectedRange = [_textField textRangeFromPosition:newCursorPosition toPosition:newCursorPosition];
+    [_textField setSelectedTextRange:newSelectedRange];
 }
 
 - (void)createSubviews {
