@@ -89,7 +89,7 @@
         return CGRectMake( self.imageView.frame.size.width+10, 11, self.contentView.frame.size.width-10-self.imageView.frame.size.width-extra , self.frame.size.height-20);
     }
     CGFloat totalWidth = self.contentView.frame.size.width;
-    CGFloat titleWidth = 0;
+    CGFloat titleWidth = 20;
 
     if (CGRectEqualToRect(CGRectZero, _entryElement.parentSection.entryPosition)) {
         for (QElement *el in _entryElement.parentSection.elements){
@@ -98,7 +98,7 @@
                 CGFloat imageWidth = q.image == NULL ? 0 : self.imageView.frame.size.width;
                 CGFloat fontSize = self.textLabel.font.pointSize == 0? 17 : self.textLabel.font.pointSize;
                 CGSize size = [q.title sizeWithFont:[self.textLabel.font fontWithSize:fontSize] forWidth:CGFLOAT_MAX lineBreakMode:NSLineBreakByWordWrapping] ;
-                CGFloat width = size.width + imageWidth;
+                CGFloat width = size.width + imageWidth + 20;
                 if (width>titleWidth)
                     titleWidth = width;
             }
@@ -110,7 +110,7 @@
 		if ([self respondsToSelector:@selector(separatorInset)]) {
 			inset = self.separatorInset.left;
 		};
-        _entryElement.parentSection.entryPosition = CGRectMake(titleWidth+20,11,totalWidth-titleWidth-_entryElement.appearance.cellBorderWidth-extra-inset, self.frame.size.height-20);
+        _entryElement.parentSection.entryPosition = CGRectMake(titleWidth+20,9.5,totalWidth-titleWidth-_entryElement.appearance.cellBorderWidth-extra-inset, self.frame.size.height-20);
     }
 
     return _entryElement.parentSection.entryPosition;
