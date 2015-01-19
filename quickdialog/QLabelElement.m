@@ -26,6 +26,14 @@
 @synthesize accessoryType = _accessoryType;
 @synthesize keepSelected = _keepSelected;
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.subtitleLines = 1;
+    }
+    return self;
+}
 
 - (QLabelElement *)initWithTitle:(NSString *)title Value:(id)value {
     self = [super init];
@@ -35,6 +43,7 @@
     [self setIsAccessibilityElement:YES];
     _value = value;
     _keepSelected = YES;
+    self.subtitleLines = 1;
     return self;
 }
 
@@ -63,6 +72,7 @@
     cell.textLabel.text = _title;
     cell.detailTextLabel.text = [_value description];
     cell.subtitle.text = _subtitle;
+    cell.subtitleLines = _subtitleLines;
     cell.imageView.image = _image;
     cell.accessoryType = _accessoryType != UITableViewCellAccessoryNone ? _accessoryType : self.controllerAccessoryAction != nil ? UITableViewCellAccessoryDetailDisclosureButton : ( self.sections!= nil || self.controllerAction!=nil ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone);
     cell.selectionStyle = self.sections!= nil || self.controllerAction!=nil || self.onSelected!=nil ? UITableViewCellSelectionStyleBlue: UITableViewCellSelectionStyleNone;
@@ -72,7 +82,7 @@
 
 - (CGFloat)getRowHeightForTableView:(QuickDialogTableView *)tableView {
     if( _subtitle != nil ) {
-        return self.height > 0 ? self.height : 60;
+        return self.height > 0 ? self.height : 60 + (MAX(_subtitleLines-1, 0)*18);
     }
     return [super getRowHeightForTableView:tableView];
 }

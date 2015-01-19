@@ -33,6 +33,7 @@
 @property(nonatomic, assign) UITableViewCellAccessoryType accessoryType;
 @property(nonatomic, strong) id value;
 @property (nonatomic, strong) NSString *subtitle;
+@property (nonatomic, assign) int subtitleLines;
 
 @property(nonatomic) BOOL keepSelected;
 

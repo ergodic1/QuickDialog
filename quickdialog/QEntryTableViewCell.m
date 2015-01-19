@@ -181,17 +181,13 @@
         toolbar.translucent = element.appearance.toolbarTranslucent;
         _textField.inputAccessoryView = toolbar;
     }
-    
-
     [self updatePrevNextStatus];
-
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self recalculateEntryFieldPosition];
 }
-
 
 -(void)recalculateEntryFieldPosition {
     _entryElement.parentSection.entryPosition = CGRectZero;

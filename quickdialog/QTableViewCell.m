@@ -24,6 +24,7 @@ static const int kCellMinimumLabelWidth = 80;
     self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:string];
     if (self ) {
         self.subtitle = [UILabel new];
+        self.subtitle.numberOfLines = 3;
     }
     return self;
 }
@@ -60,7 +61,12 @@ static const int kCellMinimumLabelWidth = 80;
     if (self.imageView.image!=nil){
         sizeWithMargin = CGSizeMake(sizeWithMargin.width - self.imageView.image.size.width - QCellMarginDouble, sizeWithMargin.height);
     }
-
+    
+    int subtitleHeight = 0;
+    if (_subtitleLines > 0 && [_subtitle.text length] > 0 ) {
+        subtitleHeight = 18 * _subtitleLines;
+    }
+    
     if (_labelingPolicy == QLabelingPolicyTrimTitle)
     {
         if (self.textLabel.text!=nil){
@@ -76,13 +82,13 @@ static const int kCellMinimumLabelWidth = 80;
                 self.textLabel.frame.origin.x,
                 QCellMargin,
                 bounds.size.width - valueSize.width - QCellMarginDouble - QCellMarginDouble,
-                bounds.size.height- QCellMarginDouble);
+                bounds.size.height- QCellMarginDouble - subtitleHeight);
 
         self.detailTextLabel.frame = CGRectMake(
                 bounds.size.width - valueSize.width - QCellMargin,
                 QCellMargin,
                 valueSize.width,
-                bounds.size.height- QCellMarginDouble);
+                bounds.size.height- QCellMarginDouble - subtitleHeight);
     } else {
 
         if (self.detailTextLabel.text!=nil){
@@ -100,7 +106,7 @@ static const int kCellMinimumLabelWidth = 80;
                 self.textLabel.frame.origin.x,
                 QCellMargin,
                 valueSize.width,
-                bounds.size.height- QCellMarginDouble);
+                bounds.size.height- QCellMarginDouble - subtitleHeight);
 
         CGFloat detailsWidth = bounds.size.width - QCellMarginDouble;
         if (valueSize.width>0)
@@ -110,10 +116,12 @@ static const int kCellMinimumLabelWidth = 80;
                 bounds.size.width - detailsWidth ,
                 QCellMargin,
                 detailsWidth - (self.accessoryView ==nil ? 0 : QCellMarginDouble) - (self.accessoryType !=UITableViewCellAccessoryNone ? 0 : QCellMarginDouble),
-                bounds.size.height- QCellMarginDouble);
+                bounds.size.height- QCellMarginDouble - subtitleHeight);
     }
     if (self.subtitle.text != nil) {
-        self.subtitle.frame = CGRectMake(self.textLabel.frame.origin.x,bounds.size.height-18,bounds.size.width- QCellMarginDouble,18);
+        [self.subtitle setNumberOfLines:_subtitleLines];
+//        [self.subtitle sizeToFit];
+        self.subtitle.frame = CGRectMake(self.textLabel.frame.origin.x,bounds.size.height-subtitleHeight,bounds.size.width- QCellMarginDouble,subtitleHeight);
         [self.contentView addSubview:self.subtitle];
     }
 }

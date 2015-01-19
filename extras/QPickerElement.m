@@ -43,6 +43,7 @@
     [cell prepareForElement:self inTableView:tableView pickerView:&pickerView];
     _pickerView = pickerView;
     cell.subtitle.text = self.subtitle;
+    cell.subtitleLines = self.subtitleLines;
     cell.imageView.image = self.image;
     
     return cell;

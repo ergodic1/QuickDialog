@@ -68,6 +68,7 @@
     cell.textField.textAlignment = self.appearance.entryAlignment;
     
     cell.subtitle.text = self.subtitle;
+    cell.subtitleLines = self.subtitleLines;
     cell.imageView.image = self.image;
     [cell prepareForElement:self inTableView:tableView];
     return cell;

@@ -33,6 +33,7 @@ static const int QCellMargin = 8;
 
 @property (nonatomic) QLabelingPolicy labelingPolicy;
 @property (nonatomic, strong) UILabel *subtitle;
+@property (nonatomic, assign) int subtitleLines;
 
 - (void)applyAppearanceForElement:(QElement *)element;
 @end

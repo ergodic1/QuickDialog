@@ -70,7 +70,7 @@
     [cell prepareForElement:self inTableView:tableView];
     cell.textField.userInteractionEnabled = self.enabled;
     cell.subtitle.text = self.subtitle;
-
+    cell.subtitleLines = self.subtitleLines;
     return cell;
 }
 
