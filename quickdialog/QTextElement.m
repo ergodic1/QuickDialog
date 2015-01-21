@@ -34,10 +34,12 @@
 }
 
 - (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"QuickformText"]];
+    QTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"QuickformText"]];
     if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"QuickformText"];
+        cell = [[QTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"QuickformText"];
     }
+    
+    [cell applyAppearanceForElement: self];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.numberOfLines = 0;
@@ -45,7 +47,7 @@
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.text = self.title;
     cell.detailTextLabel.font = self.appearance.valueFont;
-    cell.detailTextLabel.textColor = _color;
+    cell.detailTextLabel.textColor = self.appearance.valueColorEnabled;
     cell.detailTextLabel.text = _text;
 
     return cell;
