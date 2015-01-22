@@ -41,11 +41,13 @@
     
     [cell applyAppearanceForElement: self];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.detailTextLabel.textAlignment = NSTextAlignmentNatural;
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.numberOfLines = 0;
-
+    
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.text = self.title;
+    cell.textLabel.textAlignment = NSTextAlignmentNatural;
     cell.detailTextLabel.font = self.appearance.valueFont;
     cell.detailTextLabel.textColor = self.appearance.valueColorEnabled;
     cell.detailTextLabel.text = _text;
