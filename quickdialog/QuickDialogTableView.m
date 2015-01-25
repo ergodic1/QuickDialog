@@ -45,6 +45,10 @@
         self.delegate = self.quickDialogTableDelegate;
 
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 7){
+            self.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
+        }
+
     }
     return self;
 }

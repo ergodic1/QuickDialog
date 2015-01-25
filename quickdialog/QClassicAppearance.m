@@ -56,7 +56,7 @@
 - (UIView *)buildHeaderForSection:(QSection *)section andTableView:(QuickDialogTableView *)tableView andIndex:(NSInteger)index{
 
     float margin = [self currentGroupedTableViewMarginForTableView:tableView] + 8;
-    if (self.sectionTitleFont!=nil && tableView.style == UITableViewStyleGrouped){
+    if (section.title != nil && self.sectionTitleFont!=nil && tableView.style == UITableViewStyleGrouped){
         CGFloat height = [tableView.delegate tableView:tableView heightForHeaderInSection:index];
         UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, height)];
         containerView.backgroundColor = [UIColor clearColor];
@@ -82,7 +82,7 @@
 - (UIView *)buildFooterForSection:(QSection *)section andTableView:(QuickDialogTableView *)tableView andIndex:(NSInteger)index {
 
     float margin = [self currentGroupedTableViewMarginForTableView:tableView] + 8;
-    if (self.sectionFooterFont!=nil && tableView.style == UITableViewStyleGrouped){
+    if ( section.footer != nil && self.sectionFooterFont!=nil && tableView.style == UITableViewStyleGrouped){
         CGSize textSize = [section.footer sizeWithFont:self.sectionFooterFont constrainedToSize:CGSizeMake(tableView.bounds.size.width-margin-margin, 1000000)];
         UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, textSize.height)];
         containerView.backgroundColor = [UIColor clearColor];
@@ -106,14 +106,14 @@
 }
 
 - (CGFloat)heightForHeaderInSection:(QSection *)section andTableView:(QuickDialogTableView *)tableView andIndex:(NSInteger)index {
-
-     float margin = [self currentGroupedTableViewMarginForTableView:tableView] + 8;
-
+    
     if (section.headerView!=nil)
         return section.headerView.bounds.size.height;
-
+    
     if (section.title==nil)
         return 0;
+
+     float margin = [self currentGroupedTableViewMarginForTableView:tableView] + 8;
 
     if (!tableView.root.grouped)  {
 
@@ -160,16 +160,17 @@
 
 - (float) currentGroupedTableViewMarginForTableView:(UITableView *)tableView
 {
-    float marginWidth;
-    if(tableView.bounds.size.width > 20)
-    {
-        marginWidth = tableView.bounds.size.width < 400 ? 10 : MAX(31, MIN(45, tableView.bounds.size.width * 0.06));
-    }
-    else
-    {
-        marginWidth = tableView.bounds.size.width - 10;
-    }
-    return marginWidth;
+    return 0;
+//    float marginWidth;
+//    if(tableView.bounds.size.width > 20)
+//    {
+//        marginWidth = tableView.bounds.size.width < 400 ? 10 : MAX(31, MIN(45, tableView.bounds.size.width * 0.06));
+//    }
+//    else
+//    {
+//        marginWidth = tableView.bounds.size.width - 10;
+//    }
+//    return marginWidth;
 }
 
 
