@@ -45,17 +45,26 @@
         self.delegate = self.quickDialogTableDelegate;
 
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 7){
-            self.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
-        }
-
+        
     }
     return self;
 }
 
 -(void)setRoot:(QRootElement *)root{
     _root = root;
+    int index = 0;
     for (QSection *section in _root.sections) {
+        if( index == 0 ){
+            // this solves the problem of the first section being offset by ~30 pixels on modern devices
+            if ([[UIDevice currentDevice].systemVersion floatValue] >= 7){
+                if( section.title == nil ) {
+                    self.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0);
+                }else {
+                    self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+                }
+            }
+            index++;
+        }
         if (section.needsEditing){
             [self setEditing:YES animated:YES];
             self.allowsSelectionDuringEditing = YES;
