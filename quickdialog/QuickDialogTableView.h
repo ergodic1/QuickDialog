@@ -26,7 +26,7 @@
 
 @property(nonatomic, strong) QRootElement *root;
 
-@property(weak, nonatomic, readonly) QuickDialogController *controller;
+@property(weak, nonatomic) QuickDialogController *controller;
 
 @property(nonatomic, weak) id<QuickDialogDelegate> quickDialogDelegate;
 @property(nonatomic, strong) id <UITableViewDelegate> quickDialogTableDelegate;

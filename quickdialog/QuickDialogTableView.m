@@ -17,7 +17,6 @@
 #import "QuickDialogDelegate.h"
 
 @interface QuickDialogTableView ()
-@property(weak, nonatomic, readwrite) QuickDialogController *controller;
 @end
 
 @implementation QuickDialogTableView {
@@ -45,7 +44,6 @@
         self.delegate = self.quickDialogTableDelegate;
 
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        
     }
     return self;
 }
@@ -57,7 +55,8 @@
         if( index == 0 ){
             // this solves the problem of the first section being offset by ~30 pixels on modern devices
             if ([[UIDevice currentDevice].systemVersion floatValue] >= 7){
-                if( section.title == nil ) {
+                // the controller is nil when we are embedded in a uiview
+                if( section.title == nil && self.controller != nil && self.controller.root != nil ) {
                     self.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0);
                 }else {
                     self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);

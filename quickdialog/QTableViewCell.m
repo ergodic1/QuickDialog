@@ -121,7 +121,7 @@ static const int kCellMinimumLabelWidth = 80;
     if (self.subtitle.text != nil) {
         [self.subtitle setNumberOfLines:_subtitleLines];
 //        [self.subtitle sizeToFit];
-        self.subtitle.frame = CGRectMake(self.textLabel.frame.origin.x,bounds.size.height-subtitleHeight,bounds.size.width- QCellMarginDouble,subtitleHeight);
+        self.subtitle.frame = CGRectMake(self.textLabel.frame.origin.x,bounds.size.height-subtitleHeight,sizeWithMargin.width - QCellMarginDouble ,subtitleHeight);
         [self.contentView addSubview:self.subtitle];
     }
 }
@@ -139,7 +139,7 @@ static const int kCellMinimumLabelWidth = 80;
     self.detailTextLabel.textAlignment = appearance.valueAlignment;
     self.detailTextLabel.numberOfLines = 0;
     self.detailTextLabel.backgroundColor = [UIColor clearColor];
-
+    
     self.subtitle.font = [appearance.labelFont fontWithSize:10];
     self.subtitle.backgroundColor = [UIColor clearColor];
     self.subtitle.textColor = element.enabled  ? appearance.labelColorEnabled : appearance.labelColorDisabled;
