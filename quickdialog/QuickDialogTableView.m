@@ -56,8 +56,8 @@
             // this solves the problem of the first section being offset by ~30 pixels on modern devices
             if ([[UIDevice currentDevice].systemVersion floatValue] >= 7){
                 // the controller is nil when we are embedded in a uiview
-                if( section.title == nil && self.controller != nil && self.controller.root != nil ) {
-                    self.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0);
+                if( section.contentOffsetOverride != 0 ){
+                    self.contentInset = UIEdgeInsetsMake(section.contentOffsetOverride, 0, 0, 0);
                 }else {
                     self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
                 }

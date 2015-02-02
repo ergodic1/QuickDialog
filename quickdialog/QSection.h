@@ -42,6 +42,9 @@
 
 @property(nonatomic, assign) QRootElement *rootElement;
 
+// if you want to adjust the content offset in a particular form, do it here.
+@property (nonatomic, assign) int contentOffsetOverride;
+
 @property(nonatomic, readonly) BOOL needsEditing;
 
 @property(nonatomic, retain) UIView *headerView;
