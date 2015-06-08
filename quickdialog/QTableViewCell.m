@@ -115,7 +115,7 @@ static const int kCellMinimumLabelWidth = 80;
         self.detailTextLabel.frame = CGRectMake(
                 bounds.size.width - detailsWidth ,
                 QCellMargin,
-                detailsWidth - (self.accessoryView ==nil ? 0 : QCellMarginDouble) - (self.accessoryType !=UITableViewCellAccessoryNone ? 0 : QCellMarginDouble),
+                detailsWidth - (self.accessoryView ==nil ? 10 : QCellMarginDouble) - (self.accessoryType !=UITableViewCellAccessoryNone ? 0 : QCellMarginDouble),
                 bounds.size.height- QCellMarginDouble - subtitleHeight);
     }
     if (self.subtitle.text != nil) {
