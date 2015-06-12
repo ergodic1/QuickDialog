@@ -215,6 +215,7 @@
         [_quickformTableView scrollToRowAtIndexPath:[_entryElement getIndexPath] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     });
 
+    _textField.textAlignment = NSTextAlignmentCenter;
 
     if (_textField.returnKeyType == UIReturnKeyDefault) {
         UIReturnKeyType returnType = ([_entryElement.parentSection.rootElement findElementToFocusOnAfter:_entryElement]!=nil) ? UIReturnKeyNext : UIReturnKeyDone;
@@ -231,6 +232,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     _entryElement.textValue = _textField.text;
+    _textField.textAlignment = _entryElement.appearance.entryAlignment;
     
     if(_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryDidEndEditingElement:andCell:)]){
         [_entryElement.delegate QEntryDidEndEditingElement:_entryElement andCell:self];
